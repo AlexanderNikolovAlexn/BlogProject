@@ -1,0 +1,60 @@
+﻿@model MvcApplicationTest.Models.CreatePostModel
+
+@{
+    ViewBag.Title = "Create";
+}
+@Styles.Render("~/Content/themes/jquery-ui.css")  
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Post</legend>
+        <span>Author: <span style="font-size: large"><b><i>@User.Identity.Name</i></b> </span></span>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PostTitle)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PostTitle)
+            @Html.ValidationMessageFor(model => model.PostTitle)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PostBody)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.PostBody)
+            @Html.ValidationMessageFor(model => model.PostBody)
+        </div>
+
+        <div class="editor-field">
+            Tags: <input id="postTags" type="text" data-autocomplete="@Url.Action("TagsAutocomplete", "Post")" />
+            @Html.ValidationMessageFor(model => model.PostTags)
+        </div>
+
+        <span class="inputWithButton">
+            <span>Oracle<button><img src="~/Images/close_button_red.png"/></button></span>
+        </span>
+
+        <ul id="listTags">
+            <li><span>blabal <button type="submit"> <img src="~/Images/close_button_red.png" style="height:auto; width:auto;" /></button></span></li>
+        </ul>
+        
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/BlogJavascript.js")
+    @Scripts.Render("~/Scripts/jquery-1.7.1.min.js")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+    @Scripts.Render("~/Scripts/jquery-ui-1.8.20.min.js")
+}

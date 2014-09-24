@@ -1,0 +1,69 @@
+﻿@model Blog.DAL.Post
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Post</legend>
+
+        @Html.HiddenFor(model => model.PostId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PostTitle)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PostTitle)
+            @Html.ValidationMessageFor(model => model.PostTitle)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PostBody)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PostBody)
+            @Html.ValidationMessageFor(model => model.PostBody)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PostAuthor, "aspnet_Users")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PostAuthor", String.Empty)
+            @Html.ValidationMessageFor(model => model.PostAuthor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PostDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PostDate)
+            @Html.ValidationMessageFor(model => model.PostDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PostStatus)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PostStatus)
+            @Html.ValidationMessageFor(model => model.PostStatus)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

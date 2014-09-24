@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MvcApplicationTest.Models.PostsModel>
+
+@{
+    ViewBag.Title = "Posts";
+}
+
+@Html.ActionLink("Add new post", "Create", "Post")
+
+@foreach (var post in Model)
+{
+<h2>@post.PostTitle</h2> 
+    <div style="font-size:small"><i>@post.PostDate</i></div>
+<p>@Html.Raw(post.PostBody)</p>
+    <div style="text-align:right"><i>   ...@Html.ActionLink("read more", "Details", new { id = post.PostId})</i></div>
+<div style="text-align:right">Writen by: <span style="color: brown"><i>@post.Author</i></span></div>            
+    
+    <div id="comments@(post.PostId)">    
+    @Ajax.ActionLink("Show comments (" + @post.CommentsCount + ")",
+                     "PostComments",  
+                     "Comment",    
+                     new { postId = @post.PostId},                                                        
+                     new AjaxOptions {
+                     UpdateTargetId="commentsInject" + @post.PostId,
+                     InsertionMode=InsertionMode.InsertAfter,
+                     HttpMethod = "GET",
+                     OnSuccess = "hideButton(" + @post.PostId + ")",})    
+    </div>
+    <div id="commentsInject@(post.PostId)">
+    </div>
+    
+    <hr style="border: solid">
+}
+@*<script type="text/javascript">
+    function hideButton(id) {
+        var insertDiv = "#comments" + id;
+        var buttonText = $('div' + insertDiv + ' > a:first-child').text();
+        var realText = buttonText.substr(0, buttonText.indexOf('('));
+        var commentsCount = buttonText.substr(buttonText.indexOf('('), buttonText.indexOf(')'));
+        if (realText == 'Show comments ') {
+            $('div' + insertDiv + ' > a:first-child').text('Hide comments ' + commentsCount);
+        }
+        else {
+            var removeDiv = "#commentsInject" + id;
+            $('div' + insertDiv + ' > a:first-child').text('Show comments ' + commentsCount);
+            $('div' + removeDiv).html('');
+        }
+    }
+</script>*@
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/BlogJavascript.js")
+}

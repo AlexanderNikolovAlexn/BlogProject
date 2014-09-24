@@ -1,0 +1,95 @@
+﻿@model MvcApplicationTest.Models.ViewPostModel
+
+@{
+    ViewBag.Title = Model.PostTitle;
+}
+
+<h2>@Model.PostTitle</h2>
+
+<fieldset>
+    <div style="font-size: small"><i>@Model.PostDate</i></div>
+    <p>@Html.Raw(Model.PostBody)</p>
+    <div style="text-align: right">Writen by: <span style="color: brown"><i>@Model.Author</i></span></div>
+    <hr style="border: solid">
+    <h3>@Model.Comments.Count() Comments</h3>
+    <br />
+    <div id="newComments">
+    @Html.Partial("_Comments", Model.Comments)
+     </div>
+    @using (Ajax.BeginForm("AddComment", "Comment", 
+        null,
+        new AjaxOptions
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "newComments",
+            OnSuccess = "resetForm()"
+        },
+        new  { id = "commentsForm" }))
+    {
+    @Html.ValidationSummary(true)        
+        <input type="hidden" name="PostId" value="@Model.PostId">
+        <table>
+            @if (Request.IsAuthenticated)
+            {
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.UserName)
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @User.Identity.Name
+                        </div>
+                    </td>
+                </tr>           
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.UserName)
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            <input id="UserName" name="UserName" size="256" minlength="2" class="required" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Email)
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Email, new { @class = "required email" })
+                            @Html.ValidationMessageFor(model => model.Email)
+                        </div>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.CommentText)
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.CommentText, new { @class="required error", size="4000", minlength="2"})
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Add Comment">
+    }
+    <div id="addComments"></div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PostId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/jquery.form.js")
+    @Scripts.Render("~/Scripts/BlogJavascript.js")
+    @Scripts.Render("~/Scripts/jquery-1.8.2.js")
+    @Scripts.Render("~/Scripts/jquery.validate.js")
+}

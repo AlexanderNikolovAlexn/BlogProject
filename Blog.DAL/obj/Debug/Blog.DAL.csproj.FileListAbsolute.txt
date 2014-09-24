@@ -1,0 +1,24 @@
+C:\Users\Eagle\Downloads\MvcApplicationTest (1)\MvcApplicationTest\Blog.DAL\bin\Debug\Blog.DAL.dll.config
+C:\Users\Eagle\Downloads\MvcApplicationTest (1)\MvcApplicationTest\Blog.DAL\bin\Debug\Blog.DAL.dll
+C:\Users\Eagle\Downloads\MvcApplicationTest (1)\MvcApplicationTest\Blog.DAL\bin\Debug\Blog.DAL.pdb
+C:\Users\Eagle\Downloads\MvcApplicationTest (1)\MvcApplicationTest\Blog.DAL\bin\Debug\EntityFramework.dll
+C:\Users\Eagle\Downloads\MvcApplicationTest (1)\MvcApplicationTest\Blog.DAL\bin\Debug\EntityFramework.xml
+C:\Users\Eagle\Downloads\MvcApplicationTest (1)\MvcApplicationTest\Blog.DAL\obj\Debug\Blog.DAL.csprojResolveAssemblyReference.cache
+C:\Users\Eagle\Downloads\MvcApplicationTest (1)\MvcApplicationTest\Blog.DAL\obj\Debug\Blog.DAL.dll
+C:\Users\Eagle\Downloads\MvcApplicationTest (1)\MvcApplicationTest\Blog.DAL\obj\Debug\Blog.DAL.pdb
+D:\Projects .NET\MvcApplicationTest (1)\MvcApplicationTest\Blog.DAL\bin\Debug\Blog.DAL.dll.config
+D:\Projects .NET\MvcApplicationTest (1)\MvcApplicationTest\Blog.DAL\bin\Debug\Blog.DAL.dll
+D:\Projects .NET\MvcApplicationTest (1)\MvcApplicationTest\Blog.DAL\bin\Debug\Blog.DAL.pdb
+D:\Projects .NET\MvcApplicationTest (1)\MvcApplicationTest\Blog.DAL\bin\Debug\EntityFramework.dll
+D:\Projects .NET\MvcApplicationTest (1)\MvcApplicationTest\Blog.DAL\bin\Debug\EntityFramework.xml
+D:\Projects .NET\MvcApplicationTest (1)\MvcApplicationTest\Blog.DAL\obj\Debug\Blog.DAL.csprojResolveAssemblyReference.cache
+D:\Projects .NET\MvcApplicationTest (1)\MvcApplicationTest\Blog.DAL\obj\Debug\Blog.DAL.dll
+D:\Projects .NET\MvcApplicationTest (1)\MvcApplicationTest\Blog.DAL\obj\Debug\Blog.DAL.pdb
+D:\Projects .NET\MvcApplicationTest\Blog.DAL\obj\Debug\Blog.DAL.csprojResolveAssemblyReference.cache
+D:\Projects .NET\MvcApplicationTest\Blog.DAL\obj\Debug\Blog.DAL.dll
+D:\Projects .NET\MvcApplicationTest\Blog.DAL\bin\Debug\Blog.DAL.dll.config
+D:\Projects .NET\MvcApplicationTest\Blog.DAL\bin\Debug\Blog.DAL.dll
+D:\Projects .NET\MvcApplicationTest\Blog.DAL\bin\Debug\Blog.DAL.pdb
+D:\Projects .NET\MvcApplicationTest\Blog.DAL\bin\Debug\EntityFramework.dll
+D:\Projects .NET\MvcApplicationTest\Blog.DAL\bin\Debug\EntityFramework.xml
+D:\Projects .NET\MvcApplicationTest\Blog.DAL\obj\Debug\Blog.DAL.pdb

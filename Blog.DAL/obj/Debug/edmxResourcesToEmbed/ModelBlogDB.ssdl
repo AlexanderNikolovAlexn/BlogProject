@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BlogDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Comments">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostId" Type="int" Nullable="false" />
+    <Property Name="AuthorId" Type="int" />
+    <Property Name="CommentText" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="CommentDate" Type="date" Nullable="false" />
+    <Property Name="CommentStatus" Type="int" Nullable="false" />
+    <Property Name="AuthorName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Posts">
+    <Key>
+      <PropertyRef Name="PostId" />
+    </Key>
+    <Property Name="PostId" Type="int" Nullable="false" />
+    <Property Name="PostTitle" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="PostBody" Type="nvarchar(max)" />
+    <Property Name="AuthorId" Type="int" Nullable="false" />
+    <Property Name="PostDate" Type="date" Nullable="false" />
+    <Property Name="LastEditDate" Type="date" />
+    <Property Name="PostStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PostsTags">
+    <Key>
+      <PropertyRef Name="PostId" />
+      <PropertyRef Name="TagId" />
+    </Key>
+    <Property Name="PostId" Type="int" Nullable="false" />
+    <Property Name="TagId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tags">
+    <Key>
+      <PropertyRef Name="TagId" />
+    </Key>
+    <Property Name="TagId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TagName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+    <Property Name="IsAdmin" Type="int" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserStatus" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="date" Nullable="false" />
+    <Property Name="LastUpdateDate" Type="date" />
+  </EntityType>
+  <Association Name="FK_Comments_Posts">
+    <End Role="Posts" Type="Self.Posts" Multiplicity="1" />
+    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Posts">
+        <PropertyRef Name="PostId" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comments_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="AuthorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_POSTS_USERS">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Posts">
+        <PropertyRef Name="AuthorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostsTags_Posts">
+    <End Role="Posts" Type="Self.Posts" Multiplicity="1" />
+    <End Role="PostsTags" Type="Self.PostsTags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Posts">
+        <PropertyRef Name="PostId" />
+      </Principal>
+      <Dependent Role="PostsTags">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostsTags_Tags">
+    <End Role="Tags" Type="Self.Tags" Multiplicity="1" />
+    <End Role="PostsTags" Type="Self.PostsTags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tags">
+        <PropertyRef Name="TagId" />
+      </Principal>
+      <Dependent Role="PostsTags">
+        <PropertyRef Name="TagId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BlogDBModelStoreContainer">
+    <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PostsTags" EntityType="Self.PostsTags" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Comments_Posts" Association="Self.FK_Comments_Posts">
+      <End Role="Posts" EntitySet="Posts" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comments_Users" Association="Self.FK_Comments_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_POSTS_USERS" Association="Self.FK_POSTS_USERS">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Posts" EntitySet="Posts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostsTags_Posts" Association="Self.FK_PostsTags_Posts">
+      <End Role="Posts" EntitySet="Posts" />
+      <End Role="PostsTags" EntitySet="PostsTags" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostsTags_Tags" Association="Self.FK_PostsTags_Tags">
+      <End Role="Tags" EntitySet="Tags" />
+      <End Role="PostsTags" EntitySet="PostsTags" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

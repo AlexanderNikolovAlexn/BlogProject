@@ -1,0 +1,10 @@
+﻿@model IEnumerable<MvcApplicationTest.Models.ViewCommentsModel>
+
+<div id="comments">
+@foreach (var comments in Model)
+{       
+    <div>@comments.CommentText</div>    
+    <div style="font-size:small"><i>Comment by: </i><span style="font-size:14px; color:seagreen"><b>@comments.CommentAuthorName</b></span><i> Writen on: @comments.CommentDate </i></div>     
+   <hr style="border: dotted">
+}
+</div>
